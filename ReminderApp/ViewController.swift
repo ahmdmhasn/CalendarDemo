@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FSCalendar
 
 class ViewController: UIViewController {
 
@@ -17,9 +18,14 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var dateTimeTextField: UITextField!
     
+    @IBOutlet weak var calendar: FSCalendar!
+    
+    @IBOutlet weak var calendarHeightConstraint: NSLayoutConstraint!
+    
     // MARK: - Properties
     private lazy var datePicker: UIDatePicker = {
         let picker = UIDatePicker()
+        picker.datePickerMode = .time
         picker.addTarget(self, action: #selector(pickerValueChanged(_:)), for: .valueChanged)
         picker.minimumDate = Date(timeIntervalSinceNow: 0)
         return picker
@@ -31,28 +37,61 @@ class ViewController: UIViewController {
         return formatter
     }()
     
-    private var selectedDate: Date? {
-        didSet { dateTimeTextField.text = dateFormatter.string(from: selectedDate!) }
+    private lazy var timeFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm:ss"
+        return formatter
+    }()
+    
+    private var selectedDate: Date?
+    
+    private var selectedTime: Date? {
+        didSet { dateTimeTextField.text = timeFormatter.string(from: selectedTime!) }
     }
+    
+    fileprivate lazy var scopeGesture: UIPanGestureRecognizer = {
+        [unowned self] in
+        let panGesture = UIPanGestureRecognizer(target: self.calendar, action: #selector(self.calendar.handleScopeGesture(_:)))
+        panGesture.delegate = self
+        panGesture.minimumNumberOfTouches = 1
+        panGesture.maximumNumberOfTouches = 2
+        return panGesture
+    }()
+    
+    private lazy var notificationManager = NotificationManager()
     
     // MARK: - Init
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        NotificationManager().checkNotificationPermission()
-        
         dateTimeTextField.inputView = datePicker
         
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(viewTapped)))
+//        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(viewTapped)))
+        
+        // Calendar
+        if UIDevice.current.model.hasPrefix("iPad") {
+            self.calendarHeightConstraint.constant = 400
+        }
+        
+        self.calendar.select(Date())
+//        self.view.addGestureRecognizer(self.scopeGesture)
+        self.calendar.scope = .month
+        self.calendar.delegate = self
+        self.calendar.dataSource = self
+        self.calendar.allowsSelection = true
     }
 
+    deinit {
+        print(#function)
+    }
+    
     // MARK: - IB Handlers
     @objc private func pickerValueChanged(_ sender: UIDatePicker) {
-        self.selectedDate = sender.date
+        self.selectedTime = sender.date
     }
     
     @IBAction func addTapped(_ sender: UIBarButtonItem) {
-        addNotification()
+        validateInputs()
     }
     
     @IBAction func listTapped(_ sender: UIBarButtonItem) {
@@ -65,21 +104,68 @@ class ViewController: UIViewController {
     
     // MARK: - Handlers
     
-    private func addNotification() {
-        let content = UNMutableNotificationContent()
-        content.title = NSString.localizedUserNotificationString(forKey: "Hello!", arguments: nil)
-        content.body = NSString.localizedUserNotificationString(forKey: "Hello_message_body", arguments: nil)
-        content.sound = UNNotificationSound.default
-        content.categoryIdentifier = "notify-test"
-
-        let timeInSeconds = Calendar.current.dateComponents([.second], from: Date(timeIntervalSinceNow: 0), to: selectedDate!).second ?? 0
-        print(timeInSeconds)
-        let trigger = UNTimeIntervalNotificationTrigger.init(timeInterval: TimeInterval(timeInSeconds), repeats: false)
-        let request = UNNotificationRequest.init(identifier: "notify-test", content: content, trigger: trigger)
+    private func validateInputs() {
+        guard let sDate = selectedDate, let sTime = selectedTime else { return }
         
-        let center = UNUserNotificationCenter.current()
-        center.add(request)
+        guard let date = combineDateFrom(date: sDate, time: sTime),
+            let _ = nameTextField.text, let _ = locationTextField.text else { return }
+        
+        notificationManager.checkNotificationPermission(authorized: {
+            // Notifications permission authorized
+            self.notificationManager.addNotification(id: UUID().uuidString, titleLocalizedKey: "title", bodyLocalizedKey: "body_message", date: date)
+        })
     }
+    
+    private func combineDateFrom(date: Date, time: Date) -> Date? {
+        let calendar = NSCalendar.current
+        
+        let dateComponents = calendar.dateComponents([.year, .month, .day], from: date)
+        let timeComponents = calendar.dateComponents([.hour, .minute, .second], from: time)
+        
+        var components = DateComponents()
+        components.year = dateComponents.year
+        components.month = dateComponents.month
+        components.day = dateComponents.day
+        components.hour = timeComponents.hour
+        components.minute = timeComponents.minute
+        components.second = timeComponents.second
+        
+        return calendar.date(from: components)
+    }
+    
     
 }
 
+// MARK:- UIGestureRecognizerDelegate
+
+extension ViewController: UIGestureRecognizerDelegate, FSCalendarDelegate, FSCalendarDataSource {
+        
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+//        let shouldBegin = self.tableView.contentOffset.y <= -self.tableView.contentInset.top
+//        if shouldBegin {
+            let velocity = self.scopeGesture.velocity(in: self.view)
+            switch self.calendar.scope {
+            case .month:
+                return velocity.y < 0
+            case .week:
+                return velocity.y > 0
+            @unknown default:
+                return false
+            }
+//        }
+//        return shouldBegin
+    }
+    
+    func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
+        self.calendarHeightConstraint.constant = bounds.height
+        self.view.layoutIfNeeded()
+    }
+    
+    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        self.selectedDate = date
+        if monthPosition == .next || monthPosition == .previous {
+            calendar.setCurrentPage(date, animated: true)
+        }
+    }
+
+}
