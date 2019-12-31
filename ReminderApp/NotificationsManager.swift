@@ -1,9 +1,8 @@
 //
 //  NotificationsManager.swift
-//  iRead
 //
 //  Created by Ahmed M. Hassan on 10/10/19.
-//  Copyright © 2019 VictoryLink. All rights reserved.
+//  Copyright © 2019 Ahmed M. Hassan. All rights reserved.
 //
 
 import UIKit
@@ -14,15 +13,17 @@ struct NotificationManager {
     typealias OKCompletionHandler = (UIAlertAction)->()
     typealias AuthorizedCompletionHandler = ()->()
     
+    private let notificationCenter = UNUserNotificationCenter.current()
+    
     func checkNotificationPermission(authorized: AuthorizedCompletionHandler? = nil, okAction: OKCompletionHandler? = nil) {
-        UNUserNotificationCenter.current().getNotificationSettings { (settings) in
+        notificationCenter.getNotificationSettings { (settings) in
             if settings.authorizationStatus == .authorized {
                 // Already authorized
                 if let authorized = authorized { authorized() }
             }
             else {
                 // Either denied or notDetermined
-                UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
+                self.notificationCenter.requestAuthorization(options: [.alert, .sound, .badge]) {
                     (granted, error) in
                     // add your own
 //                    UNUserNotificationCenter.current().delegate = self
@@ -49,6 +50,25 @@ struct NotificationManager {
         DispatchQueue.main.async {
             UIApplication.shared.keyWindow?.rootViewController?.present(alertController, animated: true, completion: nil)
         }
+    }
+    
+    // MARK: - Add/ Remove Notification
+    
+    func addNotification(id: String, titleLocalizedKey: String, bodyLocalizedKey: String, date: Date) {
+        // Prepare content
+        let content = UNMutableNotificationContent()
+        content.title = NSString.localizedUserNotificationString(forKey: titleLocalizedKey, arguments: nil)
+        content.body = NSString.localizedUserNotificationString(forKey: bodyLocalizedKey, arguments: nil)
+        content.sound = UNNotificationSound.default
+        content.categoryIdentifier = id
+        // add notification time
+        guard let timeInSeconds = Calendar.current.dateComponents([.second], from: Date(), to: date).second, timeInSeconds > 0 else {
+            print("Time must be larger than 0")
+            return
+        }
+        let trigger = UNTimeIntervalNotificationTrigger.init(timeInterval: TimeInterval(timeInSeconds), repeats: false)
+        let request = UNNotificationRequest.init(identifier: id, content: content, trigger: trigger)
+        notificationCenter.add(request)
     }
     
 }
