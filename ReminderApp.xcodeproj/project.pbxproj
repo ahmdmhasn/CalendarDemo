@@ -14,6 +14,7 @@
 		8547D90523BC9F1400AA0C38 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8547D90423BC9F1400AA0C38 /* QuartzCore.framework */; };
 		8547D90823BC9F6B00AA0C38 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8547D90623BC9F5900AA0C38 /* SVProgressHUD.bundle */; };
 		8547D90B23BC9FC800AA0C38 /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8547D90A23BC9FC800AA0C38 /* NotificationModel.swift */; };
+		8547D91023BCA5CC00AA0C38 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8547D90F23BCA5CC00AA0C38 /* ListViewController.swift */; };
 		85687A4C23BB684400276EB0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85687A4B23BB684400276EB0 /* AppDelegate.swift */; };
 		85687A5023BB684400276EB0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85687A4F23BB684400276EB0 /* ViewController.swift */; };
 		85687A5323BB684400276EB0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85687A5123BB684400276EB0 /* Main.storyboard */; };
@@ -40,6 +41,7 @@
 		8547D90423BC9F1400AA0C38 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		8547D90623BC9F5900AA0C38 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
 		8547D90A23BC9FC800AA0C38 /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
+		8547D90F23BCA5CC00AA0C38 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		85687A4823BB684400276EB0 /* ReminderApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReminderApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85687A4B23BB684400276EB0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		85687A4F23BB684400276EB0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				85687A4F23BB684400276EB0 /* ViewController.swift */,
+				8547D90F23BCA5CC00AA0C38 /* ListViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -299,6 +302,7 @@
 				8547D90B23BC9FC800AA0C38 /* NotificationModel.swift in Sources */,
 				8547D90123BC9EFD00AA0C38 /* SVProgressAnimatedView.m in Sources */,
 				85687A4C23BB684400276EB0 /* AppDelegate.swift in Sources */,
+				8547D91023BCA5CC00AA0C38 /* ListViewController.swift in Sources */,
 				85687A6023BB6FE500276EB0 /* NotificationsManager.swift in Sources */,
 				8547D90023BC9EFD00AA0C38 /* SVIndefiniteAnimatedView.m in Sources */,
 				8547D90223BC9EFD00AA0C38 /* SVProgressHUD.m in Sources */,
@@ -450,7 +454,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6SX92YV8J2;
 				INFOPLIST_FILE = ReminderApp/SupportingFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -473,7 +477,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6SX92YV8J2;
 				INFOPLIST_FILE = ReminderApp/SupportingFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

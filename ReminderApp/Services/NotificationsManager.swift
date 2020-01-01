@@ -23,7 +23,11 @@ struct NotificationManager {
         notificationCenter.getNotificationSettings { (settings) in
             if settings.authorizationStatus == .authorized {
                 // Already authorized
-                if let authorized = authorized { authorized() }
+                if let authorized = authorized {
+                    DispatchQueue.main.async {
+                        authorized()
+                    }
+                }
             }
             else {
                 // Either denied or notDetermined
@@ -61,8 +65,10 @@ struct NotificationManager {
     func addNotification(_ notification: NotificationModel) -> Error? {
         // Prepare content
         let content = UNMutableNotificationContent()
-        content.title = NSString.localizedUserNotificationString(forKey: notification.title, arguments: nil)
-        content.body = NSString.localizedUserNotificationString(forKey: notification.body, arguments: nil)
+//        content.title = NSString.localizedUserNotificationString(forKey: notification.title, arguments: nil)
+//        content.body = NSString.localizedUserNotificationString(forKey: notification.body, arguments: nil)
+        content.title = notification.title
+        content.body = notification.body
         content.sound = UNNotificationSound.default
         content.categoryIdentifier = notification.id
         // add notification time
@@ -75,10 +81,14 @@ struct NotificationManager {
         return nil
     }
     
-    func getPendingNotifications(completion: @escaping ([UNNotificationContent])->()) {
+    func getPendingNotifications(completion: @escaping ([NotificationModel])->()) {
         return notificationCenter.getPendingNotificationRequests { (requestsList) in
-            let content = requestsList.map{$0.content}
-            completion(content)
+            let content = requestsList.map{NotificationModel(id: $0.identifier,
+                                                             title: $0.content.title, body: $0.content.body,
+                                                             date: Date())}
+            DispatchQueue.main.async {
+                completion(content)
+            }
         }
     }
     

@@ -80,6 +80,11 @@ class ViewController: UIViewController {
         self.calendar.dataSource = self
         self.calendar.allowsSelection = true
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.view.endEditing(true)
+    }
 
     deinit {
         print(#function)
@@ -95,7 +100,8 @@ class ViewController: UIViewController {
     }
     
     @IBAction func listTapped(_ sender: UIBarButtonItem) {
-        
+        let listVC = ListViewController()
+        navigationController?.pushViewController(listVC, animated: true)
     }
     
     @objc func viewTapped() {
@@ -105,14 +111,20 @@ class ViewController: UIViewController {
     // MARK: - Handlers
     
     private func validateInputs() {
-        guard let sDate = selectedDate, let sTime = selectedTime else { return }
+        guard let sDate = selectedDate, let sTime = selectedTime else {
+            SVProgressHUD.showInfo(withStatus: "Date & Time must be selected")
+            return
+        }
         
         guard let date = combineDateFrom(date: sDate, time: sTime),
-            let _ = nameTextField.text, let _ = locationTextField.text else { return }
+            let title = nameTextField.text, let location = locationTextField.text else {
+                SVProgressHUD.showInfo(withStatus: "Data are not valid")
+                return
+        }
         
         notificationManager.checkNotificationPermission(authorized: {
             // Notifications permission authorized
-            let notification = NotificationModel(id: UUID().uuidString, title: "title", body: "message", date: date)
+            let notification = NotificationModel(id: UUID().uuidString, title: title, body: location, date: date)
             self.addNotification(notification)
         })
     }
@@ -152,7 +164,6 @@ class ViewController: UIViewController {
         
         return calendar.date(from: components)
     }
-    
     
 }
 
