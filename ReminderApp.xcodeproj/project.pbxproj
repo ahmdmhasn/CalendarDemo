@@ -15,6 +15,10 @@
 		8547D90823BC9F6B00AA0C38 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8547D90623BC9F5900AA0C38 /* SVProgressHUD.bundle */; };
 		8547D90B23BC9FC800AA0C38 /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8547D90A23BC9FC800AA0C38 /* NotificationModel.swift */; };
 		8547D91023BCA5CC00AA0C38 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8547D90F23BCA5CC00AA0C38 /* ListViewController.swift */; };
+		8547D91623BCB2C300AA0C38 /* Resources.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8547D91223BCB2C200AA0C38 /* Resources.xcassets */; };
+		8547D91723BCB2C300AA0C38 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8547D91323BCB2C200AA0C38 /* UIView+Ext.swift */; };
+		8547D91823BCB2C300AA0C38 /* NRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8547D91423BCB2C200AA0C38 /* NRView.swift */; };
+		8547D91923BCB2C300AA0C38 /* NRView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8547D91523BCB2C300AA0C38 /* NRView.xib */; };
 		85687A4C23BB684400276EB0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85687A4B23BB684400276EB0 /* AppDelegate.swift */; };
 		85687A5023BB684400276EB0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85687A4F23BB684400276EB0 /* ViewController.swift */; };
 		85687A5323BB684400276EB0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85687A5123BB684400276EB0 /* Main.storyboard */; };
@@ -42,6 +46,10 @@
 		8547D90623BC9F5900AA0C38 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
 		8547D90A23BC9FC800AA0C38 /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
 		8547D90F23BCA5CC00AA0C38 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		8547D91223BCB2C200AA0C38 /* Resources.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Resources.xcassets; sourceTree = "<group>"; };
+		8547D91323BCB2C200AA0C38 /* UIView+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
+		8547D91423BCB2C200AA0C38 /* NRView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NRView.swift; sourceTree = "<group>"; };
+		8547D91523BCB2C300AA0C38 /* NRView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NRView.xib; sourceTree = "<group>"; };
 		85687A4823BB684400276EB0 /* ReminderApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReminderApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85687A4B23BB684400276EB0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		85687A4F23BB684400276EB0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -130,6 +138,17 @@
 			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
+		8547D91123BCB2B400AA0C38 /* NRView */ = {
+			isa = PBXGroup;
+			children = (
+				8547D91423BCB2C200AA0C38 /* NRView.swift */,
+				8547D91523BCB2C300AA0C38 /* NRView.xib */,
+				8547D91223BCB2C200AA0C38 /* Resources.xcassets */,
+				8547D91323BCB2C200AA0C38 /* UIView+Ext.swift */,
+			);
+			path = NRView;
+			sourceTree = "<group>";
+		};
 		85687A3F23BB684400276EB0 = {
 			isa = PBXGroup;
 			children = (
@@ -152,6 +171,7 @@
 		85687A4A23BB684400276EB0 /* ReminderApp */ = {
 			isa = PBXGroup;
 			children = (
+				8547D91123BCB2B400AA0C38 /* NRView */,
 				8547D90923BC9FB000AA0C38 /* Model */,
 				8547D8F523BC9EED00AA0C38 /* SVProgressHUD */,
 				8547D90C23BCA06F00AA0C38 /* Services */,
@@ -241,10 +261,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8547D91923BCB2C300AA0C38 /* NRView.xib in Resources */,
 				85687A5823BB684800276EB0 /* LaunchScreen.storyboard in Resources */,
 				85687A5523BB684800276EB0 /* Assets.xcassets in Resources */,
 				85687A5323BB684400276EB0 /* Main.storyboard in Resources */,
 				8547D90823BC9F6B00AA0C38 /* SVProgressHUD.bundle in Resources */,
+				8547D91623BCB2C300AA0C38 /* Resources.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,6 +321,8 @@
 			files = (
 				8547D90323BC9EFD00AA0C38 /* SVRadialGradientLayer.m in Sources */,
 				85687A5023BB684400276EB0 /* ViewController.swift in Sources */,
+				8547D91823BCB2C300AA0C38 /* NRView.swift in Sources */,
+				8547D91723BCB2C300AA0C38 /* UIView+Ext.swift in Sources */,
 				8547D90B23BC9FC800AA0C38 /* NotificationModel.swift in Sources */,
 				8547D90123BC9EFD00AA0C38 /* SVProgressAnimatedView.m in Sources */,
 				85687A4C23BB684400276EB0 /* AppDelegate.swift in Sources */,

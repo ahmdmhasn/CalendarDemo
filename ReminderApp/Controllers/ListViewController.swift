@@ -11,7 +11,14 @@ import UIKit
 class ListViewController: UIViewController {
     
     fileprivate var notificationsList = [NotificationModel]() {
-        didSet { tableView.reloadData() }
+        didSet {
+            tableView.reloadData()
+            if notificationsList.isEmpty {
+                noResultView.show()
+            } else {
+                noResultView.hide()
+            }
+        }
     }
     
     private lazy var notificationManager = NotificationManager()
@@ -21,7 +28,16 @@ class ListViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.separatorStyle = .none
         return tableView
+    }()
+    
+    private lazy var noResultView: NRView = {
+        let nrView = NRView.addToView(view, initiallyHidden: true)
+        nrView.setText(title: "You have no reminders", description: "Start by adding (+) a new reminder!")
+        nrView.delegate = self
+        nrView.buttonStyle(.rounded(cornerRadius: 8, withShadow: false, backgroundColor: UIColor.blue.withAlphaComponent(0.8), textColor: UIColor.white))
+        return nrView
     }()
         
     // MARK: - Init
@@ -89,6 +105,15 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
         let deleteAction = self.contextualDeleteAction(forRowAtIndexPath: indexPath)
         let swipeConfig = UISwipeActionsConfiguration(actions: [deleteAction])
         return swipeConfig
+    }
+    
+}
+
+// MARK: - NRView Delegate
+extension ListViewController: NRViewDelegate {
+    
+    func nrView(_ view: NRView, didPressButton sender: UIButton) {
+        self.navigationController?.popViewController(animated: true)
     }
     
 }
