@@ -27,7 +27,7 @@ class ViewController: UIViewController {
         let picker = UIDatePicker()
         picker.datePickerMode = .time
         picker.addTarget(self, action: #selector(pickerValueChanged(_:)), for: .valueChanged)
-        picker.minimumDate = Date(timeIntervalSinceNow: 0)
+//        picker.minimumDate = Date()
         return picker
     }()
     
@@ -112,8 +112,28 @@ class ViewController: UIViewController {
         
         notificationManager.checkNotificationPermission(authorized: {
             // Notifications permission authorized
-            self.notificationManager.addNotification(id: UUID().uuidString, titleLocalizedKey: "title", bodyLocalizedKey: "body_message", date: date)
+            let notification = NotificationModel(id: UUID().uuidString, title: "title", body: "message", date: date)
+            self.addNotification(notification)
         })
+    }
+    
+    private func addNotification(_ notification: NotificationModel) {
+        // Add notification using or Notifications Manager
+        let error = notificationManager.addNotification(notification)
+        // Check for success or failure
+        DispatchQueue.main.async {
+            if error == nil  {
+                let date = self.dateFormatter.string(from: notification.date)
+                SVProgressHUD.showSuccess(withStatus: "Added on \(date)")
+                self.nameTextField.text = ""
+                self.locationTextField.text = ""
+                self.dateTimeTextField.text = ""
+                self.calendar.select(Date())
+            }
+            else {
+                SVProgressHUD.showError(withStatus: error?.localizedDescription)
+            }
+        }
     }
     
     private func combineDateFrom(date: Date, time: Date) -> Date? {
@@ -138,10 +158,10 @@ class ViewController: UIViewController {
 
 // MARK:- UIGestureRecognizerDelegate
 
-extension ViewController: UIGestureRecognizerDelegate, FSCalendarDelegate, FSCalendarDataSource {
+extension ViewController: UIGestureRecognizerDelegate {
         
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-//        let shouldBegin = self.tableView.contentOffset.y <= -self.tableView.contentInset.top
+//        let shouldBegin = self.view.contentOffset.y <= -self.view.contentInset.top
 //        if shouldBegin {
             let velocity = self.scopeGesture.velocity(in: self.view)
             switch self.calendar.scope {
@@ -155,6 +175,11 @@ extension ViewController: UIGestureRecognizerDelegate, FSCalendarDelegate, FSCal
 //        }
 //        return shouldBegin
     }
+    
+}
+
+// MARK: - FSCalendar Delegate
+extension ViewController: FSCalendarDelegate, FSCalendarDataSource {
     
     func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
         self.calendarHeightConstraint.constant = bounds.height

@@ -3,10 +3,17 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8547D90023BC9EFD00AA0C38 /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8547D8F823BC9EFD00AA0C38 /* SVIndefiniteAnimatedView.m */; };
+		8547D90123BC9EFD00AA0C38 /* SVProgressAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8547D8FA23BC9EFD00AA0C38 /* SVProgressAnimatedView.m */; };
+		8547D90223BC9EFD00AA0C38 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 8547D8FB23BC9EFD00AA0C38 /* SVProgressHUD.m */; };
+		8547D90323BC9EFD00AA0C38 /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8547D8FD23BC9EFD00AA0C38 /* SVRadialGradientLayer.m */; };
+		8547D90523BC9F1400AA0C38 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8547D90423BC9F1400AA0C38 /* QuartzCore.framework */; };
+		8547D90823BC9F6B00AA0C38 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8547D90623BC9F5900AA0C38 /* SVProgressHUD.bundle */; };
+		8547D90B23BC9FC800AA0C38 /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8547D90A23BC9FC800AA0C38 /* NotificationModel.swift */; };
 		85687A4C23BB684400276EB0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85687A4B23BB684400276EB0 /* AppDelegate.swift */; };
 		85687A5023BB684400276EB0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85687A4F23BB684400276EB0 /* ViewController.swift */; };
 		85687A5323BB684400276EB0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85687A5123BB684400276EB0 /* Main.storyboard */; };
@@ -20,6 +27,19 @@
 		008B5AEA0662B277CA1C1A71 /* Pods_ReminderApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReminderApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F40810AEEA4DE633782FF81 /* Pods-ReminderApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReminderApp.debug.xcconfig"; path = "Target Support Files/Pods-ReminderApp/Pods-ReminderApp.debug.xcconfig"; sourceTree = "<group>"; };
 		39C351302558A102454140AB /* Pods-ReminderApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReminderApp.release.xcconfig"; path = "Target Support Files/Pods-ReminderApp/Pods-ReminderApp.release.xcconfig"; sourceTree = "<group>"; };
+		8547D8F623BC9EFC00AA0C38 /* ReminderApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ReminderApp-Bridging-Header.h"; sourceTree = "<group>"; };
+		8547D8F723BC9EFC00AA0C38 /* SVRadialGradientLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVRadialGradientLayer.h; sourceTree = "<group>"; };
+		8547D8F823BC9EFD00AA0C38 /* SVIndefiniteAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVIndefiniteAnimatedView.m; sourceTree = "<group>"; };
+		8547D8F923BC9EFD00AA0C38 /* SVProgressAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressAnimatedView.h; sourceTree = "<group>"; };
+		8547D8FA23BC9EFD00AA0C38 /* SVProgressAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressAnimatedView.m; sourceTree = "<group>"; };
+		8547D8FB23BC9EFD00AA0C38 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
+		8547D8FC23BC9EFD00AA0C38 /* SVIndefiniteAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVIndefiniteAnimatedView.h; sourceTree = "<group>"; };
+		8547D8FD23BC9EFD00AA0C38 /* SVRadialGradientLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVRadialGradientLayer.m; sourceTree = "<group>"; };
+		8547D8FE23BC9EFD00AA0C38 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
+		8547D8FF23BC9EFD00AA0C38 /* SVProgressHUD-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD-Prefix.pch"; sourceTree = "<group>"; };
+		8547D90423BC9F1400AA0C38 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		8547D90623BC9F5900AA0C38 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
+		8547D90A23BC9FC800AA0C38 /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
 		85687A4823BB684400276EB0 /* ReminderApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReminderApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85687A4B23BB684400276EB0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		85687A4F23BB684400276EB0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -37,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8547D90523BC9F1400AA0C38 /* QuartzCore.framework in Frameworks */,
 				ACBB62C6672FC8D15996BFFE /* Pods_ReminderApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -47,9 +68,63 @@
 		06C1D3F14B61B681C47400E6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8547D90423BC9F1400AA0C38 /* QuartzCore.framework */,
 				008B5AEA0662B277CA1C1A71 /* Pods_ReminderApp.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8547D8F523BC9EED00AA0C38 /* SVProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				8547D90623BC9F5900AA0C38 /* SVProgressHUD.bundle */,
+				8547D8FC23BC9EFD00AA0C38 /* SVIndefiniteAnimatedView.h */,
+				8547D8F823BC9EFD00AA0C38 /* SVIndefiniteAnimatedView.m */,
+				8547D8F923BC9EFD00AA0C38 /* SVProgressAnimatedView.h */,
+				8547D8FA23BC9EFD00AA0C38 /* SVProgressAnimatedView.m */,
+				8547D8FF23BC9EFD00AA0C38 /* SVProgressHUD-Prefix.pch */,
+				8547D8FE23BC9EFD00AA0C38 /* SVProgressHUD.h */,
+				8547D8FB23BC9EFD00AA0C38 /* SVProgressHUD.m */,
+				8547D8F723BC9EFC00AA0C38 /* SVRadialGradientLayer.h */,
+				8547D8FD23BC9EFD00AA0C38 /* SVRadialGradientLayer.m */,
+				8547D8F623BC9EFC00AA0C38 /* ReminderApp-Bridging-Header.h */,
+			);
+			path = SVProgressHUD;
+			sourceTree = "<group>";
+		};
+		8547D90923BC9FB000AA0C38 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8547D90A23BC9FC800AA0C38 /* NotificationModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8547D90C23BCA06F00AA0C38 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				85687A5F23BB6FE500276EB0 /* NotificationsManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		8547D90D23BCA50000AA0C38 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				85687A4F23BB684400276EB0 /* ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		8547D90E23BCA51100AA0C38 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				85687A5123BB684400276EB0 /* Main.storyboard */,
+				85687A5423BB684800276EB0 /* Assets.xcassets */,
+				85687A5623BB684800276EB0 /* LaunchScreen.storyboard */,
+				85687A5923BB684800276EB0 /* Info.plist */,
+			);
+			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
 		85687A3F23BB684400276EB0 = {
@@ -74,13 +149,12 @@
 		85687A4A23BB684400276EB0 /* ReminderApp */ = {
 			isa = PBXGroup;
 			children = (
-				85687A5F23BB6FE500276EB0 /* NotificationsManager.swift */,
+				8547D90923BC9FB000AA0C38 /* Model */,
+				8547D8F523BC9EED00AA0C38 /* SVProgressHUD */,
+				8547D90C23BCA06F00AA0C38 /* Services */,
 				85687A4B23BB684400276EB0 /* AppDelegate.swift */,
-				85687A4F23BB684400276EB0 /* ViewController.swift */,
-				85687A5123BB684400276EB0 /* Main.storyboard */,
-				85687A5423BB684800276EB0 /* Assets.xcassets */,
-				85687A5623BB684800276EB0 /* LaunchScreen.storyboard */,
-				85687A5923BB684800276EB0 /* Info.plist */,
+				8547D90D23BCA50000AA0C38 /* Controllers */,
+				8547D90E23BCA51100AA0C38 /* SupportingFiles */,
 			);
 			path = ReminderApp;
 			sourceTree = "<group>";
@@ -137,7 +211,7 @@
 				TargetAttributes = {
 					85687A4723BB684400276EB0 = {
 						CreatedOnToolsVersion = 11.3;
-						LastSwiftMigration = 1100;
+						LastSwiftMigration = 1130;
 					};
 				};
 			};
@@ -167,6 +241,7 @@
 				85687A5823BB684800276EB0 /* LaunchScreen.storyboard in Resources */,
 				85687A5523BB684800276EB0 /* Assets.xcassets in Resources */,
 				85687A5323BB684400276EB0 /* Main.storyboard in Resources */,
+				8547D90823BC9F6B00AA0C38 /* SVProgressHUD.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,9 +294,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8547D90323BC9EFD00AA0C38 /* SVRadialGradientLayer.m in Sources */,
 				85687A5023BB684400276EB0 /* ViewController.swift in Sources */,
+				8547D90B23BC9FC800AA0C38 /* NotificationModel.swift in Sources */,
+				8547D90123BC9EFD00AA0C38 /* SVProgressAnimatedView.m in Sources */,
 				85687A4C23BB684400276EB0 /* AppDelegate.swift in Sources */,
 				85687A6023BB6FE500276EB0 /* NotificationsManager.swift in Sources */,
+				8547D90023BC9EFD00AA0C38 /* SVIndefiniteAnimatedView.m in Sources */,
+				8547D90223BC9EFD00AA0C38 /* SVProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,7 +449,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6SX92YV8J2;
-				INFOPLIST_FILE = ReminderApp/Info.plist;
+				INFOPLIST_FILE = ReminderApp/SupportingFiles/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -377,6 +457,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.victorylink.ReminderApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ReminderApp/SVProgressHUD/ReminderApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -391,7 +472,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6SX92YV8J2;
-				INFOPLIST_FILE = ReminderApp/Info.plist;
+				INFOPLIST_FILE = ReminderApp/SupportingFiles/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -399,6 +480,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.victorylink.ReminderApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ReminderApp/SVProgressHUD/ReminderApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

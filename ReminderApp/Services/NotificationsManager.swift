@@ -10,6 +10,10 @@ import UserNotifications
 
 struct NotificationManager {
     
+    enum NotificationError: String, Error {
+        case dateNotValid = "Date is not valid."
+    }
+    
     typealias OKCompletionHandler = (UIAlertAction)->()
     typealias AuthorizedCompletionHandler = ()->()
     
@@ -54,21 +58,32 @@ struct NotificationManager {
     
     // MARK: - Add/ Remove Notification
     
-    func addNotification(id: String, titleLocalizedKey: String, bodyLocalizedKey: String, date: Date) {
+    func addNotification(_ notification: NotificationModel) -> Error? {
         // Prepare content
         let content = UNMutableNotificationContent()
-        content.title = NSString.localizedUserNotificationString(forKey: titleLocalizedKey, arguments: nil)
-        content.body = NSString.localizedUserNotificationString(forKey: bodyLocalizedKey, arguments: nil)
+        content.title = NSString.localizedUserNotificationString(forKey: notification.title, arguments: nil)
+        content.body = NSString.localizedUserNotificationString(forKey: notification.body, arguments: nil)
         content.sound = UNNotificationSound.default
-        content.categoryIdentifier = id
+        content.categoryIdentifier = notification.id
         // add notification time
-        guard let timeInSeconds = Calendar.current.dateComponents([.second], from: Date(), to: date).second, timeInSeconds > 0 else {
-            print("Time must be larger than 0")
-            return
+        guard let timeInSeconds = Calendar.current.dateComponents([.second], from: Date(), to: notification.date).second, timeInSeconds > 0 else {
+            return NotificationError.dateNotValid
         }
         let trigger = UNTimeIntervalNotificationTrigger.init(timeInterval: TimeInterval(timeInSeconds), repeats: false)
-        let request = UNNotificationRequest.init(identifier: id, content: content, trigger: trigger)
+        let request = UNNotificationRequest.init(identifier: notification.id, content: content, trigger: trigger)
         notificationCenter.add(request)
+        return nil
+    }
+    
+    func getPendingNotifications(completion: @escaping ([UNNotificationContent])->()) {
+        return notificationCenter.getPendingNotificationRequests { (requestsList) in
+            let content = requestsList.map{$0.content}
+            completion(content)
+        }
+    }
+    
+    func removeLocalNotificationWithID(_ id: String) {
+        notificationCenter.removePendingNotificationRequests(withIdentifiers: [id])
     }
     
 }
