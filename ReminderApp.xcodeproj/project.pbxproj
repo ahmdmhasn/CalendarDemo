@@ -25,6 +25,7 @@
 		85687A5523BB684800276EB0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85687A5423BB684800276EB0 /* Assets.xcassets */; };
 		85687A5823BB684800276EB0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85687A5623BB684800276EB0 /* LaunchScreen.storyboard */; };
 		85687A6023BB6FE500276EB0 /* NotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85687A5F23BB6FE500276EB0 /* NotificationsManager.swift */; };
+		85F3CFB623BE2CBC006FAAF0 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F3CFB523BE2CBC006FAAF0 /* UIViewController+Ext.swift */; };
 		ACBB62C6672FC8D15996BFFE /* Pods_ReminderApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 008B5AEA0662B277CA1C1A71 /* Pods_ReminderApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +61,7 @@
 		85687A5F23BB6FE500276EB0 /* NotificationsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsManager.swift; sourceTree = "<group>"; };
 		85687A7423BB813900276EB0 /* ReminderAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderAppTests.swift; sourceTree = "<group>"; };
 		85687A7623BB813900276EB0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		85F3CFB523BE2CBC006FAAF0 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +173,7 @@
 		85687A4A23BB684400276EB0 /* ReminderApp */ = {
 			isa = PBXGroup;
 			children = (
+				85F3CFB423BE2CA6006FAAF0 /* Extensions */,
 				8547D91123BCB2B400AA0C38 /* NRView */,
 				8547D90923BC9FB000AA0C38 /* Model */,
 				8547D8F523BC9EED00AA0C38 /* SVProgressHUD */,
@@ -189,6 +192,14 @@
 				85687A7623BB813900276EB0 /* Info.plist */,
 			);
 			path = ReminderAppTests;
+			sourceTree = "<group>";
+		};
+		85F3CFB423BE2CA6006FAAF0 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				85F3CFB523BE2CBC006FAAF0 /* UIViewController+Ext.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		FCC5DC7462FFF19A30087B63 /* Pods */ = {
@@ -321,6 +332,7 @@
 			files = (
 				8547D90323BC9EFD00AA0C38 /* SVRadialGradientLayer.m in Sources */,
 				85687A5023BB684400276EB0 /* ViewController.swift in Sources */,
+				85F3CFB623BE2CBC006FAAF0 /* UIViewController+Ext.swift in Sources */,
 				8547D91823BCB2C300AA0C38 /* NRView.swift in Sources */,
 				8547D91723BCB2C300AA0C38 /* UIView+Ext.swift in Sources */,
 				8547D90B23BC9FC800AA0C38 /* NotificationModel.swift in Sources */,

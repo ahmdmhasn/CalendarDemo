@@ -66,19 +66,11 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         dateTimeTextField.inputView = datePicker
         
-//        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(viewTapped)))
-        
+        // Handle keyboard
+        self.bindToKeyboard()
+
         // Calendar
-        if UIDevice.current.model.hasPrefix("iPad") {
-            self.calendarHeightConstraint.constant = 400
-        }
-        
-        self.calendar.select(Date())
-//        self.view.addGestureRecognizer(self.scopeGesture)
-        self.calendar.scope = .month
-        self.calendar.delegate = self
-        self.calendar.dataSource = self
-        self.calendar.allowsSelection = true
+        setupCalendar()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -106,6 +98,18 @@ class ViewController: UIViewController {
     
     @objc func viewTapped() {
         view.endEditing(true)
+    }
+        
+    private func setupCalendar() {
+        if UIDevice.current.model.hasPrefix("iPad") {
+            self.calendarHeightConstraint.constant = 400
+        }
+        self.calendar.select(Date())
+        //        self.view.addGestureRecognizer(self.scopeGesture)
+        self.calendar.scope = .month
+        self.calendar.delegate = self
+        self.calendar.dataSource = self
+        self.calendar.allowsSelection = true
     }
     
     // MARK: - Handlers
