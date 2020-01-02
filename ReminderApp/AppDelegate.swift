@@ -17,9 +17,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         NotificationManager().checkNotificationPermission()
 
+        addToolbarToTextFields()
+        
         return true
     }
 
+    private func addToolbarToTextFields() {
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: window?.bounds.width ?? 0, height: 50))
+        toolbar.barStyle = .default
+        toolbar.items = [
+            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
+            UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneWithKeyboard))
+        ]
+        toolbar.sizeToFit()
+        UITextField.appearance().inputAccessoryView = toolbar
+    }
+    
+    @objc func doneWithKeyboard() {
+        //Done with number pad
+        window?.endEditing(true)
+    }
 
 }
 

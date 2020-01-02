@@ -134,21 +134,64 @@ class ViewController: UIViewController {
     }
     
     private func addNotification(_ notification: NotificationModel) {
-        // Add notification using or Notifications Manager
-        let error = notificationManager.addNotification(notification)
-        // Check for success or failure
+        // Create pre-at-after time notifications
+        // Time should be larger than 5 minutes
+        guard notification.date > Date(timeInterval: 305, since: Date()) else {
+            self.showError("Time cannot be less than 5 minutes.")
+            return
+        }
+        let list = getNotificationsListFor(notification)
+        // Add notifications using our Notifications Manager
+        do {
+            try list.forEach{ try self.notificationManager.addNotification($0)}
+            self.showSuccessAlert()
+        } catch {
+            if let error = error as? NotificationError {
+                self.showError(error.rawValue)
+            } else {
+                self.showError(error.localizedDescription)
+            }
+        }
+    }
+    
+    private func getNotificationsListFor(_ notification: NotificationModel) -> [NotificationModel] {
+        // Create list for notifications
+        var list = [NotificationModel]()
+        // Check for valid dates
+        guard let beforeDate = notification.date.subtract(seconds: 300),
+            let afterDate = notification.date.subtract(seconds: -300) else {
+            showError("Date is not valid.")
+            return []
+        }
+        // Pre
+        list.append(NotificationModel(id: notification.id+"0",
+                                      title: notification.title,
+                                      body: "\(notification.title) is due after 5 minutes.",
+                                      date: beforeDate))
+        // Notification
+        list.append(notification)
+        // After
+        list.append(NotificationModel(id: notification.id+"1",
+                                      title: notification.title,
+                                      body: "\(notification.title) was finished 5 minutes ago.",
+                                      date: afterDate))
+        // Return list
+        return list
+    }
+    
+    private func showSuccessAlert() {
         DispatchQueue.main.async {
-            if error == nil  {
-                let date = self.dateFormatter.string(from: notification.date)
-                SVProgressHUD.showSuccess(withStatus: "Added on \(date)")
-                self.nameTextField.text = ""
-                self.locationTextField.text = ""
-                self.dateTimeTextField.text = ""
-                self.calendar.select(Date())
-            }
-            else {
-                SVProgressHUD.showError(withStatus: error?.localizedDescription)
-            }
+            SVProgressHUD.showSuccess(withStatus: "Notification added.")
+            self.nameTextField.text = ""
+            self.locationTextField.text = ""
+            self.dateTimeTextField.text = ""
+            self.calendar.select(Date())
+        }
+    }
+    
+    private func showError(_ message: String) {
+        DispatchQueue.main.async {
+            SVProgressHUD.showError(withStatus: message)
         }
     }
     

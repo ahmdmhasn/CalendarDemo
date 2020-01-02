@@ -8,12 +8,12 @@
 import UIKit
 import UserNotifications
 
+enum NotificationError: String, Error {
+    case dateNotValid = "Date is not valid."
+}
+
 struct NotificationManager {
-    
-    enum NotificationError: String, Error {
-        case dateNotValid = "Date is not valid."
-    }
-    
+        
     typealias OKCompletionHandler = (UIAlertAction)->()
     typealias AuthorizedCompletionHandler = ()->()
     
@@ -62,7 +62,7 @@ struct NotificationManager {
     
     // MARK: - Add/ Remove Notification
     
-    func addNotification(_ notification: NotificationModel) -> Error? {
+    func addNotification(_ notification: NotificationModel) throws {
         // Prepare content
         let content = UNMutableNotificationContent()
 //        content.title = NSString.localizedUserNotificationString(forKey: notification.title, arguments: nil)
@@ -73,12 +73,11 @@ struct NotificationManager {
         content.categoryIdentifier = notification.id
         // add notification time
         guard let timeInSeconds = Calendar.current.dateComponents([.second], from: Date(), to: notification.date).second, timeInSeconds > 0 else {
-            return NotificationError.dateNotValid
+            throw NotificationError.dateNotValid
         }
         let trigger = UNTimeIntervalNotificationTrigger.init(timeInterval: TimeInterval(timeInSeconds), repeats: false)
         let request = UNNotificationRequest.init(identifier: notification.id, content: content, trigger: trigger)
         notificationCenter.add(request)
-        return nil
     }
     
     func getPendingNotifications(completion: @escaping ([NotificationModel])->()) {
